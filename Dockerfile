@@ -24,8 +24,9 @@ FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /app
 
-# Copy the built JAR from build stage
-COPY --from=build /app/target/*.jar app.jar
+# Copy the built WAR from build stage and rename to app.jar
+# Spring Boot WAR files can be executed as JAR files
+COPY --from=build /app/target/*.war app.jar
 
 # Expose Content Service port
 EXPOSE 8082
